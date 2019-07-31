@@ -5,15 +5,20 @@
   
 
   
-  <title>FgoDt</title>
+  <title>使用NDK(r20)编译FFmpeg | FgoDt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="FgoDt">
-<meta property="og:url" content="http://fgodt.github.io/index.html">
+  <meta name="description" content="前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马恢复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？ NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的NDK里sysroot也改">
+<meta name="keywords" content="NDK,FFmpeg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用NDK(r20)编译FFmpeg">
+<meta property="og:url" content="http://fgodt.github.io/2019/07/31/使用NDK-r20-编译FFmpeg/index.html">
 <meta property="og:site_name" content="FgoDt">
+<meta property="og:description" content="前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马恢复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？ NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的NDK里sysroot也改">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-31T14:02:46.637Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FgoDt">
+<meta name="twitter:title" content="使用NDK(r20)编译FFmpeg">
+<meta name="twitter:description" content="前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马恢复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？ NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的NDK里sysroot也改">
   
     <link rel="alternate" href="/atom.xml" title="FgoDt" type="application/atom+xml">
   
@@ -60,9 +65,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-使用NDK-r20-编译FFmpeg" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-使用NDK-r20-编译FFmpeg" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/31/使用NDK-r20-编译FFmpeg/" class="article-date">
   <time datetime="2019-07-31T13:12:22.000Z" itemprop="datePublished">2019-07-31</time>
@@ -75,8 +78,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/31/使用NDK-r20-编译FFmpeg/">使用NDK(r20)编译FFmpeg</a>
+    <h1 class="article-title" itemprop="name">
+      使用NDK(r20)编译FFmpeg
     </h1>
   
 
@@ -103,61 +106,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-学算法之堆排序" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/15/学算法之堆排序/" class="article-date">
-  <time datetime="2019-06-15T08:16:31.000Z" itemprop="datePublished">2019-06-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/15/学算法之堆排序/">学算法之堆排序</a>
-    </h1>
+    <a href="/2019/06/15/学算法之堆排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">学算法之堆排序</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="要点归纳"><a href="#要点归纳" class="headerlink" title="要点归纳"></a>要点归纳</h3><ol>
-<li>堆是一个数组，它可以被看成一个近似的完全二叉树</li>
-<li>给定一个节点下标是i, 那么就有 parent(i) = i/2, left(i) = 2i, right(2) = 2i+1</li>
-<li>二叉堆又分为两种形式：最大堆和最小堆。最大堆满足A[parent(i)]&gt;=A[i].最小堆满足A[parent(i)]&lt;=A[i]</li>
-</ol>
-<h3 id="对排序过程"><a href="#对排序过程" class="headerlink" title="对排序过程"></a>对排序过程</h3><p>· max_heapify: 维护最大堆性质，时间负责度为O(lgn)<br>· build_max_heap: 构建一个最大堆，时间复杂度为线性<br>· heapsort: 对数组原址排序，时间复杂度为O(nlgn)</p>
-<h4 id="max-heapify"><a href="#max-heapify" class="headerlink" title="max_heapify"></a>max_heapify</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_heapify</span><span class="params">(A,i)</span>:</span></span><br><span class="line">    l=left(i)</span><br><span class="line">    r=right(i)</span><br><span class="line">    <span class="keyword">if</span> i&lt;A.size <span class="keyword">and</span> A[l] &gt; A[i]:</span><br><span class="line">        largest = l</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        largest = i</span><br><span class="line">    <span class="keyword">if</span> r&lt;A.size <span class="keyword">and</span> A[r] &gt; A[i]:</span><br><span class="line">        largest = r</span><br><span class="line">    <span class="keyword">if</span> largest != i:</span><br><span class="line">        A[i],a[largest] = A[largest],A[i]</span><br><span class="line">        max_heapify(A,largest)</span><br></pre></td></tr></table></figure>
-
-<h4 id="build-max-heap"><a href="#build-max-heap" class="headerlink" title="build_max_heap"></a>build_max_heap</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_max_heap</span><span class="params">(A)</span></span></span><br><span class="line">    for i = [A.size/2];i&gt;0;i--:</span><br><span class="line">        max_heapify(A,i)</span><br></pre></td></tr></table></figure>
-
-<h4 id="heapsort"><a href="#heapsort" class="headerlink" title="heapsort"></a>heapsort</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapsort</span><span class="params">(A)</span></span></span><br><span class="line">    A.size = len(A)</span><br><span class="line">    build_max_heap(A)</span><br><span class="line">    <span class="keyword">for</span> i = len(A); i &gt; <span class="number">1</span>; i--:</span><br><span class="line">        A[<span class="number">1</span>],A[i] = A[i],A[<span class="number">1</span>]</span><br><span class="line">        A.size = A.size - <span class="number">1</span></span><br><span class="line">        max_heapify(A,i)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://fgodt.github.io/2019/06/15/学算法之堆排序/" data-id="cjyrfcrwz0005tflkdvulseo7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
