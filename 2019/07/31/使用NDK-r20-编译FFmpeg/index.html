@@ -7,18 +7,18 @@
   
   <title>使用NDK(r20)编译FFmpeg | FgoDt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马恢复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？ NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的NDK里sysroot也改">
+  <meta name="description" content="前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马回复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？不如我们花点时间来折腾下。 NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的">
 <meta name="keywords" content="NDK,FFmpeg">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用NDK(r20)编译FFmpeg">
 <meta property="og:url" content="http://fgodt.github.io/2019/07/31/使用NDK-r20-编译FFmpeg/index.html">
 <meta property="og:site_name" content="FgoDt">
-<meta property="og:description" content="前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马恢复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？ NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的NDK里sysroot也改">
+<meta property="og:description" content="前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马回复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？不如我们花点时间来折腾下。 NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-31T14:02:46.637Z">
+<meta property="og:updated_time" content="2019-07-31T16:00:50.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用NDK(r20)编译FFmpeg">
-<meta name="twitter:description" content="前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马恢复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？ NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的NDK里sysroot也改">
+<meta name="twitter:description" content="前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马回复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？不如我们花点时间来折腾下。 NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的">
   
     <link rel="alternate" href="/atom.xml" title="FgoDt" type="application/atom+xml">
   
@@ -87,18 +87,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马恢复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？</p>
+        <p>前两天在论坛上看到一个问题，大意是怎么在UBUNTU下使用NDK-r20编译FFmpeg。我第一反应是不该用r20，因为我在很早前用过没有gcc版本的NDK，发现有很多问题不能编译，就立马回复了个使用r12b来编译。回到家我细想了一下，如果我就是想要用r20的NDK编译最新的FFmpeg呢？不如我们花点时间来折腾下。</p>
 <p>NDK不知道从什么版本彻底改革，使用了clang来编译，这还不是最关键的，在新的NDK里sysroot也改变了(关键是google在NDK根目录里建了一个sysroot–错误的sysroot)，这就导致FFmpeg过不了cc检测。常见的报错都是没有crtbegin_so.o或者找不到系统库连接。</p>
+<p>所以sysroot其实是罪魁祸首，如果我们使用正确的sysroot一切就好办了。我用了个取巧的方式来查看sysroot，在AS里建一个c++项目，故意写错一段代码就能看到grade的log里面明确标出了使用的sysroot($NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot)这才是我们需要的。</p>
 <h3 id="学会看log"><a href="#学会看log" class="headerlink" title="学会看log"></a>学会看log</h3><p>很多同学遇到编译问题就只截图终端，其实真正的log在ffbuild/conf.log,这里面详细说明了错在什么地方。</p>
 <h2 id="正确的配置"><a href="#正确的配置" class="headerlink" title="正确的配置"></a>正确的配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NDK=/home/fgodt/Android/Sdk/ndk-bundle</span><br><span class="line"><span class="built_in">export</span> API=22</span><br><span class="line"><span class="built_in">export</span> ARCH=aarch64</span><br><span class="line"><span class="built_in">export</span> PLATFORM=aarch64</span><br><span class="line"><span class="built_in">export</span> TARGET=<span class="variable">$PLATFORM</span>-linux-android</span><br><span class="line"><span class="built_in">export</span> TOOLCHAIN=<span class="variable">$NDK</span>/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br><span class="line"><span class="comment">#正确的sysroot</span></span><br><span class="line"><span class="built_in">export</span> SYSROOT=<span class="variable">$NDK</span>/toolchains/llvm/prebuilt/linux-x86_64/sysroot</span><br><span class="line"><span class="built_in">export</span> CPU=aarch64</span><br><span class="line"><span class="built_in">export</span> PREFIX=/home/fgodt/FFmpeg/android/<span class="variable">$CPU</span></span><br><span class="line"><span class="built_in">export</span> CFLAG=<span class="string">"-D__ANDROID_API__=<span class="variable">$API</span> -Os -fPIC -DANDROID "</span>\</span><br><span class="line"><span class="comment">######################################################</span></span><br><span class="line"><span class="comment">#aarch64 不需要 --cpu , 如果是其他cpu请添加下面这句</span></span><br><span class="line"><span class="comment">#--cpu=$PLATFORM \</span></span><br><span class="line"><span class="comment">######################################################</span></span><br><span class="line">./configure \</span><br><span class="line">--prefix=<span class="variable">$PREFIX</span> \</span><br><span class="line">--cc=<span class="variable">$TOOLCHAIN</span>/<span class="variable">$TARGET</span><span class="variable">$API</span>-clang \</span><br><span class="line">--cxx=<span class="variable">$TOOLCHAIN</span>/<span class="variable">$TARGET</span><span class="variable">$API</span>-clang++ \</span><br><span class="line">--ld=<span class="variable">$TOOLCHAIN</span>/<span class="variable">$TARGET</span><span class="variable">$API</span>-clang \</span><br><span class="line">--target-os=android  \</span><br><span class="line">--arch=<span class="variable">$ARCH</span> \</span><br><span class="line">--cross-prefix=<span class="variable">$TOOLCHAIN</span>/<span class="variable">$ARCH</span>-linux-android- \</span><br><span class="line">--<span class="built_in">disable</span>-asm \</span><br><span class="line">--<span class="built_in">enable</span>-cross-compile \</span><br><span class="line">--<span class="built_in">disable</span>-shared \</span><br><span class="line">--<span class="built_in">disable</span>-doc \</span><br><span class="line">--<span class="built_in">enable</span>-runtime-cpudetect \</span><br><span class="line">--<span class="built_in">disable</span>-ffmpeg \</span><br><span class="line">--<span class="built_in">disable</span>-ffplay \</span><br><span class="line">--<span class="built_in">disable</span>-ffprobe \</span><br><span class="line">--<span class="built_in">disable</span>-decoders \</span><br><span class="line">--<span class="built_in">disable</span>-encoders \</span><br><span class="line">--<span class="built_in">disable</span>-devices \</span><br><span class="line">--sysroot=<span class="variable">$SYSROOT</span> \</span><br><span class="line">--extra-cflags=<span class="string">"<span class="variable">$CFLAG</span>"</span> \</span><br><span class="line">--extra-ldflags=<span class="string">""</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>这里的配置只是简单的验证了是否通过编译，你应该根据自己的需要裁减FFmpeg，如果需要硬件加速等功能也需要添加JNI配置和开启MediaCodec。</p>
+<p>至于根目录下的sysroot有什么用我还没有细研究，总不能凭白无故多一个sysroot吧。</p>
 <p>最后希望对还没编译过的同学有用</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://fgodt.github.io/2019/07/31/使用NDK-r20-编译FFmpeg/" data-id="cjyrfcrwj0000tflk72fa0fh7" class="article-share-link">Share</a>
+      <a data-url="http://fgodt.github.io/2019/07/31/使用NDK-r20-编译FFmpeg/" data-id="cjyrfq3610001xqlkgtuqnnfk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FFmpeg/">FFmpeg</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDK/">NDK</a></li></ul>
