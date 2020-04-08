@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
     <header>
-
+        <script src = "http://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+        <link rel="stylesheet" type="text/css" href="main.css">
     </header>
     <body>
-        <script src = "http://bilibili.github.io/flv.js/dist/flv.js"></script>
-        <video id= "videoElement"></video>
+        <div class="center">
+            <h3>On Live</h3>
+            <video autoplay=true id= "videoElement" controls="controls"></video>
+        </div>
         <script>
-            if(flvjs.isSupported()){
-                var videoElement = document.getElementById('videoElement');
-                var flvPlayer = flvjs.createPlayer({
-                    type: 'flv',
-                    url: 'http://dev-rtmp.xthktech.cn/test/123test.flv?auth_key=1586504712-0-0-fda5605a59a98d2c9551290066d35e4e'
+            var videoElement = document.getElementById('videoElement');
+            if(Hls.isSupported()){
+                var hls = new Hls();
+                hls.loadSource('http://dev-rtmp.xthktech.cn/test/123test.m3u8?auth_key=1586504712-0-0-6d6925e8ef82a7819fa0d9529ffda73d');
+                hls.attachMedia(videoElement);
+                hls.on(Hls.Events.MANIFEST_PARSED,function(){
+                    videoElement.play();
                 });
-                flvPlayer.attachMediaElement(videoElement);
-                flvPlayer.load();
-                flvPlayer.play();
             }else{
                 
                 
