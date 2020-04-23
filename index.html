@@ -13,7 +13,7 @@
             var videoElement = document.getElementById('videoElement');
             if(Hls.isSupported()){
                 var hls = new Hls();
-                hls.loadSource('http://dev-rtmp.xthktech.cn/test/123test.m3u8?auth_key=1586504712-0-0-6d6925e8ef82a7819fa0d9529ffda73d');
+                hls.loadSource('https://dev-rtmp.xthktech.cn/test/123test.m3u8?auth_key=1587811117-0-0-432f39137ebc1919f06d5f1796ce6777');
                 hls.attachMedia(videoElement);
                 hls.on(Hls.Events.MANIFEST_PARSED,function(){
                     videoElement.play();
