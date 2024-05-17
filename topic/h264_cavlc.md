@@ -12,6 +12,8 @@
 +---+---+---+---+
 ```
 对其进行zigzag排序后得到数据队列 N=[0, 3, 0, 1, -1, -1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+
+CAVLC 编码目的就是将N数据全部编码进rbsp中，CAVLC将数据分为`非零数据`、绝对值为1的`拖尾1数据`、`零数据`
 ### 编码TotalCoeff和TrailingOnes
 >这里有几个概念要先说明一下
 1. TotalCoeff：非零系数的数目（也就是N队列里不为零的数据个数和，N队列这个值为5）
@@ -20,8 +22,33 @@
 
 以上得到TotalCoeff=5，得到TrailingOnes=3
 
-查找coeff_token对应表9-5得到编码，假设nC为0，我们查到TotalCoeff==1&&TrailingOnes==1对应的二进制编码为01
-，将值写入bit流中则完成了coeff_token编码
+### coeff_token 编码
+coeff_token 通过查表得到，依赖于TotalCoeff、TrailingOnes、nC.
+
+nC 由以下方法推导而出：
+1. 如果是ChromaDCLevel的CAVLC解码 nC由以下推导：
+   1. 如果 ChromaArrayType 等于 1， nC 等于 -1
+   2. 否则（ChromaArrayType 等于 2，nC等于 -2
+2. 否则由下面方式推导而出：
+   ```python
+   #invoked_for 表示调用者，如invoked_for == Intral16x16DCLevel表示是处于Intral16X16DCLevel解析状态，当前状态下我们调用了CAVLC解码
+   if invoked_for == Intral16x16DCLevel:
+      luma4x4BlkIdx = 0
+   if invoked_for == CbIntra16x16DCLevel:
+      cb4x4BlkIdx = 0
+   if invoked_for == CrIntra16x16DCLevel:
+      cr4x4BlkIdx = 0
+   if invoked_for in [Intral16x16DCLevel, Intra16x16ACLevel, LumaLevel4x4]:
+      #6.4.11.4
+      mbAddrA, luma4x4BlkIdA, mbAddrB, luma4x4BlkIdxB = DerivationProcessForNeighbouring4x4LumaBlocks(luma4x4BlkIdx)
+   elif invoked_for in [CbIntra16x16DCLevel, Cbintra16x16ACLevel, CbLevel4x4]:
+      #6.4.11.6
+      mbAddrA, luma4x4BlkIdA, mbAddrB, luma4x4BlkIdxB = DerivationProcessForNeighbouring4x4ChromBlocksForChromaArrayTypeEqual3(luma4x4BlkIdx)
+
+
+   ```
+
+查找coeff_token对应表9-5得到编码，假设nC为0，我们查到TotalCoeff==1&&TrailingOnes==1对应的二进制编码为01，将值写入bit流中则完成了coeff_token编码
 
 如果TotalCoeff为0直接退出，我们就完成了整个CAVLC编码
 
