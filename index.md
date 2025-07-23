@@ -3,3 +3,4 @@
 ## [NDK 编译 FFmpeg 最新版本的正确方式](/topic/ndk_build_ffmpeg.md)
 ## [opengl es 2 纹理拷贝](/topic/opengles_copy_tex.md)
 ## [微积分笔记](/topic/calculus_learning_one.md)
+## [llvm 的优化引起的代码运行错误](/topic/clang_optimization_and_aarch64_asm.md)
