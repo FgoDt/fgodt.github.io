@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AuriSift 音频编辑应用的隐私政策">
+    <title>AuriSift 隐私政策</title>
+    <style>
+        :root {
+            --bg: #F8FAFC;
+            --text: #111827;
+            --muted: #64748B;
+            --primary: #2563EB;
+            --divider: #E2E8F0;
+            --highlight-bg: #E8F0FF;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0F172A;
+                --text: #E2E8F0;
+                --muted: #94A3B8;
+                --primary: #60A5FA;
+                --divider: #1E293B;
+                --highlight-bg: #172554;
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 24px;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 32px 0;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 16px;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .update-date {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 20px;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--divider);
+        }
+        p { margin-bottom: 12px; }
+        ul {
+            margin: 8px 0 16px 24px;
+            list-style: disc;
+        }
+        li { margin-bottom: 6px; }
+        code { font-size: 0.9em; word-break: break-all; }
+        .highlight {
+            background: var(--highlight-bg);
+            border-left: 3px solid var(--primary);
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--divider);
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <a href="privacy-en.html">English</a>
+        </div>
+
+        <h1>AuriSift 隐私政策</h1>
+        <p class="update-date">最后更新：2026年11月9日</p>
+
+        <div class="highlight">
+            <strong>核心说明：</strong>AuriSift 的剪切、提取、转换和压缩都在您的设备本地完成，不会把您的音频、视频或导出文件上传到开发者服务器。应用不需要账号，也不包含使用分析。免费版显示 Google AdMob 横幅广告，因此加载广告时会产生网络请求和广告相关的数据处理。
+        </div>
+
+        <h2>一、适用范围</h2>
+        <p>本政策适用于 Android 应用 AuriSift（包名 <code>com.fgodt.audiotools</code>，以下简称“本应用”），说明本应用会访问、处理和保存哪些信息，以及您可以如何管理这些信息。</p>
+
+        <h2>二、我们访问或处理的信息</h2>
+        <p>本应用只在提供功能所必需的范围内访问或处理以下信息：</p>
+        <ul>
+            <li><strong>您选择的音频和视频文件：</strong>本应用只通过系统文件选择器打开您主动选择的文件，并保留对这些文件的读取授权，以便您从“最近文件”中再次打开。处理时，应用会在私有缓存目录中创建临时副本，所有编辑、转换、压缩和音频提取都在设备上完成。</li>
+            <li><strong>文件信息：</strong>文件名、类型、时长、大小、码率、采样率和声道数，用于显示文件信息、估算导出大小，以及生成波形、视频缩略图和试听预览。</li>
+            <li><strong>编辑设置：</strong>选区、剪切模式、输出格式与质量、压缩目标、淡入淡出和音量等参数。当您保存项目或导出成功时，这些参数会保存在设备上，方便下次继续编辑。</li>
+            <li><strong>广告相关数据：</strong>由 Google 移动广告 SDK 处理，详见第五节。</li>
+            <li><strong>反馈邮件：</strong>当您点击应用菜单中的“反馈”时，应用会打开您的邮件应用，并预填应用版本、设备厂商与型号以及 Android 版本。只有您确认发送后，我们才会收到这封邮件和您的邮箱地址。这些信息只用于回复您和排查问题。</li>
+        </ul>
+
+        <h2>三、我们不会做的事</h2>
+        <ul>
+            <li>不会上传您的音频、视频或导出文件</li>
+            <li>不要求注册账号，不收集姓名、电话号码等身份信息</li>
+            <li>不集成使用分析或崩溃统计服务</li>
+            <li>不会出售您的个人信息</li>
+            <li>不会让广告 SDK 读取您的媒体文件</li>
+            <li>不访问麦克风、相机、通讯录或精确位置</li>
+            <li>不会修改或删除您的原始文件</li>
+        </ul>
+
+        <h2>四、数据存储与删除</h2>
+        <p>本应用的数据只保存在您的设备上：</p>
+        <ul>
+            <li><strong>最近文件和已保存的项目：</strong>应用私有目录</li>
+            <li><strong>最近导出记录（最多 50 条）：</strong>应用私有目录</li>
+            <li><strong>设置（例如默认保存文件夹）：</strong>应用私有目录</li>
+            <li><strong>导入文件的副本、压缩试听样本等临时文件：</strong>应用缓存目录</li>
+            <li><strong>导出文件：</strong>您选择的文件夹，默认是应用的 Music / AudioTools 文件夹（<code>Android/data/com.fgodt.audiotools/files/Music/AudioTools</code>）</li>
+        </ul>
+        <p>您可以通过以下方式删除这些数据：</p>
+        <ul>
+            <li>在“最近文件”中选择“从最近记录移除”或“删除本地副本”</li>
+            <li>在“最近导出”中选择“从最近记录移除”或“删除导出文件”</li>
+            <li>在“设置”中清理缓存</li>
+            <li>卸载应用。卸载会删除应用私有目录、缓存和默认导出文件夹中的内容；保存到您自选文件夹中的导出文件不受影响。</li>
+        </ul>
+        <p>如果您在设备上开启了 Android / Google 备份，系统可能会按照 Android 的备份规则，把本应用的部分数据（例如设置、最近记录以及应用目录中的文件）备份到您的 Google 账号。备份由 Android 和 Google 管理，开发者无法访问。缓存目录中的临时文件不会被备份。</p>
+
+        <h2>五、广告</h2>
+        <p>免费版使用 Google AdMob 显示横幅广告。为了展示、衡量广告并防止欺诈，Google 移动广告 SDK 可能会收集并向 Google 发送以下信息：</p>
+        <ul>
+            <li>广告 ID 等设备标识符</li>
+            <li>IP 地址，可能被用于推断大致位置</li>
+            <li>设备型号、系统版本、应用信息等设备与应用数据</li>
+            <li>广告展示、点击等互动数据以及诊断信息</li>
+        </ul>
+        <p>在支持的设备上，Google 移动广告 SDK 还可能使用 Android 隐私沙盒中的广告相关功能（例如 Topics、Attribution Reporting）。</p>
+        <p>这些数据由 Google 按照 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隐私政策</a>处理，另见 <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google 如何使用来自合作伙伴网站或应用的信息</a>。您可以在设备设置中重置或删除广告 ID、选择停用个性化广告，或管理广告隐私设置。</p>
+        <p>如果将来提供付费去除广告等功能，购买将通过 Google Play 完成，我们不会获取您的支付卡信息。</p>
+
+        <h2>六、权限</h2>
+        <ul>
+            <li><strong>网络访问（INTERNET、ACCESS_NETWORK_STATE）：</strong>仅用于加载广告。音频和视频处理不需要网络。</li>
+            <li><strong>广告 ID 及广告相关权限（AD_ID、ACCESS_ADSERVICES_*）：</strong>由 Google 移动广告 SDK 声明，用于广告展示和衡量。</li>
+            <li><strong>文件访问：</strong>本应用不申请存储权限，而是通过 Android 系统文件选择器访问您选择的文件。当您选择自定义保存文件夹时，应用会保留该文件夹的写入授权，用于保存导出文件。</li>
+        </ul>
+
+        <h2>七、儿童隐私</h2>
+        <p>本应用不面向 13 岁以下儿童，也不会有意收集儿童的个人信息。如果您认为儿童通过反馈邮件等方式向我们提供了个人信息，请联系我们删除。</p>
+
+        <h2>八、政策变更</h2>
+        <p>本政策可能会随应用功能的变化而更新。更新后，我们会修改本页面的“最后更新”日期；如有重大变更，会在应用内说明。</p>
+
+        <h2>九、联系我们</h2>
+        <p>如有隐私相关问题，请通过应用菜单中的“反馈”联系我们，或发送邮件至：</p>
+        <p>邮箱：<a href="mailto:fgodtdev@gmail.com">fgodtdev@gmail.com</a></p>
+
+        <div class="footer">
+            © 2026 fgodt 保留所有权利。
+        </div>
+    </div>
+</body>
+</html>

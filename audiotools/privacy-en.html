@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy for the AuriSift audio editor app">
+    <title>AuriSift Privacy Policy</title>
+    <style>
+        :root {
+            --bg: #F8FAFC;
+            --text: #111827;
+            --muted: #64748B;
+            --primary: #2563EB;
+            --divider: #E2E8F0;
+            --highlight-bg: #E8F0FF;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0F172A;
+                --text: #E2E8F0;
+                --muted: #94A3B8;
+                --primary: #60A5FA;
+                --divider: #1E293B;
+                --highlight-bg: #172554;
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 24px;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 32px 0;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 16px;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .update-date {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 20px;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--divider);
+        }
+        p { margin-bottom: 12px; }
+        ul {
+            margin: 8px 0 16px 24px;
+            list-style: disc;
+        }
+        li { margin-bottom: 6px; }
+        code { font-size: 0.9em; word-break: break-all; }
+        .highlight {
+            background: var(--highlight-bg);
+            border-left: 3px solid var(--primary);
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--divider);
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <a href="privacy.html">中文</a>
+        </div>
+
+        <h1>AuriSift Privacy Policy</h1>
+        <p class="update-date">Last updated: November 9, 2026</p>
+
+        <div class="highlight">
+            <strong>Key notice:</strong> AuriSift cuts, extracts, converts and compresses audio on your device. It does not upload your audio, video or exported files to the developer's servers. The app does not require an account and does not include analytics. The free version shows Google AdMob banner ads, so loading ads involves network requests and advertising-related data processing.
+        </div>
+
+        <h2>1. Scope</h2>
+        <p>This policy applies to the Android app AuriSift (package name <code>com.fgodt.audiotools</code>, "the app"). It explains what information the app accesses, processes and stores, and how you can manage it.</p>
+
+        <h2>2. Information We Access or Process</h2>
+        <p>The app only accesses or processes the following information as needed to provide its features:</p>
+        <ul>
+            <li><strong>Audio and video files you choose:</strong> The app only opens files you select with the system file picker, and keeps read access to them so you can reopen them from Recent Files. To process a file, the app makes a temporary copy in its private cache. All editing, conversion, compression and audio extraction happens on your device.</li>
+            <li><strong>File information:</strong> File name, type, duration, size, bitrate, sample rate and channel count. This is used to show file info, estimate export sizes, and generate waveforms, video thumbnails and previews.</li>
+            <li><strong>Edit settings:</strong> Selection range, cut mode, output format and quality, compression target, fades and volume. These are saved on your device when you save a project or finish an export, so you can continue editing later.</li>
+            <li><strong>Advertising data:</strong> Handled by the Google Mobile Ads SDK. See Section 5.</li>
+            <li><strong>Feedback email:</strong> When you tap Feedback in the app menu, the app opens your email app with the app version, device manufacturer and model, and Android version filled in. We only receive this email, and your email address, if you choose to send it. We use this information only to reply to you and to troubleshoot problems.</li>
+        </ul>
+
+        <h2>3. What We Do NOT Do</h2>
+        <ul>
+            <li>We do not upload your audio, video or exported files</li>
+            <li>We do not require an account or collect identity information such as your name or phone number</li>
+            <li>We do not include analytics or crash reporting services</li>
+            <li>We do not sell your personal information</li>
+            <li>We do not allow advertising SDKs to read your media files</li>
+            <li>We do not access your microphone, camera, contacts or precise location</li>
+            <li>We do not change or delete your original files</li>
+        </ul>
+
+        <h2>4. Data Storage and Deletion</h2>
+        <p>The app only stores data on your device:</p>
+        <ul>
+            <li><strong>Recent files and saved projects:</strong> App-private directory</li>
+            <li><strong>Recent exports list (up to 50 entries):</strong> App-private directory</li>
+            <li><strong>Settings (such as the default save folder):</strong> App-private directory</li>
+            <li><strong>Temporary files, such as copies of imported files and compression preview samples:</strong> App cache directory</li>
+            <li><strong>Exported files:</strong> The folder you choose. By default this is the app's Music / AudioTools folder (<code>Android/data/com.fgodt.audiotools/files/Music/AudioTools</code>)</li>
+        </ul>
+        <p>You can delete this data in the following ways:</p>
+        <ul>
+            <li>In Recent Files, choose "Remove from recent" or "Delete local copy"</li>
+            <li>In Recent Exports, choose "Remove from recent" or "Delete exported file"</li>
+            <li>Clear the cache in Settings</li>
+            <li>Uninstall the app. Uninstalling removes the app-private directory, the cache and the default export folder. Exported files saved to a folder you chose yourself are not affected.</li>
+        </ul>
+        <p>If you have turned on Android / Google backup on your device, Android may back up some of the app's data (such as settings, recent lists and files in the app's folders) to your Google account according to its backup rules. Backups are managed by Android and Google, and the developer cannot access them. Temporary files in the cache directory are not backed up.</p>
+
+        <h2>5. Ads</h2>
+        <p>The free version uses Google AdMob to show banner ads. To show and measure ads and to prevent fraud, the Google Mobile Ads SDK may collect the following information and send it to Google:</p>
+        <ul>
+            <li>Device identifiers such as the advertising ID</li>
+            <li>IP address, which may be used to estimate approximate location</li>
+            <li>Device and app information such as device model, OS version and app details</li>
+            <li>Ad interactions such as impressions and clicks, and diagnostic information</li>
+        </ul>
+        <p>On supported devices, the Google Mobile Ads SDK may also use ad-related features of the Android Privacy Sandbox (such as Topics and Attribution Reporting).</p>
+        <p>Google processes this data under the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>. See also <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from sites or apps that use our services</a>. You can reset or delete your advertising ID, opt out of personalized ads, or manage ad privacy settings in your device settings.</p>
+        <p>If paid features such as ad removal are offered in the future, purchases will be processed by Google Play. We do not receive your payment card information.</p>
+
+        <h2>6. Permissions</h2>
+        <ul>
+            <li><strong>Network access (INTERNET, ACCESS_NETWORK_STATE):</strong> Used only to load ads. Audio and video processing does not need the network.</li>
+            <li><strong>Advertising ID and ad-related permissions (AD_ID, ACCESS_ADSERVICES_*):</strong> Declared by the Google Mobile Ads SDK to show and measure ads.</li>
+            <li><strong>File access:</strong> The app does not request storage permissions. It uses the Android system file picker to access the files you choose. If you choose a custom save folder, the app keeps write access to that folder to save exported files.</li>
+        </ul>
+
+        <h2>7. Children's Privacy</h2>
+        <p>This app is not directed to children under 13 and does not knowingly collect personal information from children. If you believe a child has given us personal information, for example in a feedback email, please contact us and we will delete it.</p>
+
+        <h2>8. Policy Changes</h2>
+        <p>We may update this policy as the app's features change. When we do, we will change the "Last updated" date on this page. We will describe significant changes in the app.</p>
+
+        <h2>9. Contact Us</h2>
+        <p>For privacy-related questions, use Feedback in the app menu or email:</p>
+        <p>Email: <a href="mailto:fgodtdev@gmail.com">fgodtdev@gmail.com</a></p>
+
+        <div class="footer">
+            © 2026 fgodt. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
